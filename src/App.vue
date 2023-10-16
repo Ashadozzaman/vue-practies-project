@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1>{{ msg }}</h1>
-    <div>
+    <!-- <div>
       <p>My Rating: {{ myRating }}</p>
-      <th e-ratting v-model="myRating"></the-ratting>
-    </div>
+      <the-ratting v-model="myRating"></the-ratting>
+    </div> -->
     <!-- <ProductCard
       v-for="product in products"
       :key="product.title"
@@ -48,20 +48,39 @@
             :website-address="contact.websiteAddress" 
             :phone="contact.phone">
     </FirstComponentVue>-->
+  
+    <div class="container">
+      <credit-card 
+       v-model:nameOnCard="nameOnCard"
+       v-model:cardNumber="cardNumber"
+       v-model:expire="expire"
+       v-model:cvv="cvv"></credit-card>
+      <hr>
+      <p>
+        Name: {{ nameOnCard }} <br>
+        Card Number: {{ cardNumber }} <br>
+        Expire: {{ expire }} <br>
+        CVV: {{ cvv }} <br>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 // import FirstComponentVue from './FirstComponent.vue';
-import TheCard from "./TheCard.vue";
-import ProductCard from "./ProductCard.vue";
-import TheRatting from "./TheRatting.vue";
+// import TheCard from "./TheCard.vue";
+// import ProductCard from "./ProductCard.vue";
+// import TheRatting from "./TheRatting.vue";
+import CreditCard from "./CreditCard.vue";
 
 export default {
   data() {
     return {
       msg: "Vue V-Model",
-      myRating:3,
+      nameOnCard:"Ashadozzaman",
+      cardNumber:"",
+      expire:"",
+      cvv:"",
       // contacts: [{
       //   name: "Ashadozzaman",
       //   phone: "017111111",
@@ -111,9 +130,10 @@ export default {
   },
   components: {
     // FirstComponentVue,
-    TheCard,
-    ProductCard,
-    TheRatting
+    // TheCard,
+    // ProductCard,
+    // TheRatting
+    CreditCard
   }
 };
 </script>
