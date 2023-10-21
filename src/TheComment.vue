@@ -23,12 +23,18 @@ export default {
     }, 
     // inheritAttrs:false,
     mounted(){
-        console.log(this.$attrs);
+        // console.log(this.$attrs);
     },
     methods: {
         handleInput(e) {
             this.$emit("update:modelValue", e.target.value);
         }
+    },
+    beforeUnmount() {
+        alert("Are u sure?");
+    },
+    unmounted() {
+        // alert("Are u sure?");
     },
 }
 </script>

@@ -1,12 +1,14 @@
 <template>
   <div>
     <h1>{{ msg }}</h1>
+    <button @click="hide = true">Hide</button>
     <div class="container">
       <the-comment v-model="myComment"
       buttonText="Continue"
       class="shadowed"
       placeholder="Enter Comment"
-      @click="handleClick" 
+      @click="handleClick"
+      v-if="!hide" 
       ></the-comment>
       <hr>
       <p>{{myComment}}</p>
@@ -22,12 +24,25 @@ export default {
     return {
       msg: "Vue Non-Prop",
       myComment: "Mr.",
+      hide:false,
     };
   },
   methods: {
     handleClick(){
       console.log('clicked');
     }
+  },
+  created() {
+    console.log('created');
+  },
+  mounted() {
+    console.log('mounted');
+  },
+  beforeMount() {
+    console.log('beforeMount');
+  },
+  updated() {
+    console.log('updated');
   },
   components: {
     TheComment
