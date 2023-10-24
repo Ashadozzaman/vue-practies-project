@@ -5,7 +5,7 @@
         :value="modelValue"
         @input="handleInput"
         v-bind="$attrs" ></textarea>
-        <button class="text-right" @click="$emit('continueClick')">{{buttonText}}</button>
+        <button class="text-right">{{buttonText}}</button>
     </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
         }
     },
     beforeUnmount() {
-        //alert("Are u sure?");
+        alert("Are u sure?");
     },
     unmounted() {
         // alert("Are u sure?");
