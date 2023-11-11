@@ -1,67 +1,107 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <header>
+      <h2>{{ msg }}</h2>
+    </header>
     <div class="container">
-      <the-comment v-model="myComment"
-      buttonText="Continue"
-      class="shadowed"
-      placeholder="Enter Comment"
-      @click="handleClick"
-      @continueClick="handleContinueClick"
-      ></the-comment>
-      <hr>
-      <p>{{myComment}}</p>
-      <button @click="showNotification">Show Notification</button>
-      <the-dialog heading="Are You Sure?" v-if="showDialog">
-        <p>
-          Are you realy want to comment?
-          <br>
-          <button @click="showDialog = false">Yes</button>
-          <button>NO</button>
-        </p>
-      </the-dialog>
-      <the-notification
-      v-for="(n,i) in notifications"
-      :key="i"
-      :text="n"
-      ></the-notification>
+      <div class="tab">
+        <div class="tab_menu">
+          <div v-for="tab in tabs" :key="tab" class="tab_menu-item" :class="{ 'tab_menu-active': activeTab === tab }"
+            @click="activeTab = tab">{{ tab }}</div>
+        </div>
+      </div>
+      <div class="tab_content">
+        <br>
+        <!-- <Login v-if="activeTab == 'Login'" /> -->
+        <keep-alive>
+          <component :is="activeTab"></component>
+        </keep-alive>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import TheComment from "./TheComment.vue";
-import TheDialog from "./TheDialog.vue";
-import TheNotification from "./TheNotification.vue";
+import Login from "./Login.vue";
+import Register from "./Register.vue";
+import Contact from "./Contact.vue";
 
 export default {
   data() {
     return {
-      msg: "Vue Non-Prop",
-      myComment: "Mr.",
-      showDialog: false,
-      notifications:[],
+      msg: "Dynamic Component",
+      tabs: ['Login', 'Register', 'Contact'],
+      activeTab: "Login",
+      name: 'Ashadozzman Shvou',
+      website: 'http://shovoua.com',
+      address: 'Dhaka'
     };
   },
   methods: {
-    handleClick(){
+    handleClick() {
       //console.log('clicked');
     },
-    handleContinueClick(){
-      console.log('clcik');
-      this.showDialog = true;
-    },
-    showNotification(){
-      this.notifications.push('You have a notification');
-      setTimeout( () => {
-        this.notifications.shift();
-      }, 2000)
+  },
+  provide() {
+    return {
+      name: this.name,
+      website: this.website,
+      address: this.address,
     }
   },
   components: {
-    TheComment,
-    TheDialog,
-    TheNotification
+    Login,
+    Register,
+    Contact,
   }
 };
 </script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  margin-left: 22px;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.8;
+}
+
+header {
+  background-color: #1f2c46;
+  color: #41b883;
+  font-size: 22px;
+  padding: 22px;
+  text-align: center;
+}
+
+.tab_content {
+  padding: 0 5%;
+  background-color: antiquewhite;
+  margin: 0 5%;
+}
+
+.tab_menu {
+  display: flex;
+  padding: 0 5%;
+}
+
+.tab_menu-active {
+  background-color: rgb(97, 97, 226) !important;
+}
+
+.tab_menu-item {
+  padding: 6px 15px;
+  background-color: rgb(160 200 246);
+}
+
+input {
+  padding: 5px 11px;
+  margin-bottom: 11px;
+}
+</style>
