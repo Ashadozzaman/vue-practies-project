@@ -1,6 +1,6 @@
 <template>
     <div class="credit-card">
-        <label>Comment</label>
+        <label>Write your comment bellow</label>
         <textarea cols="3" rows="3"
         :value="modelValue"
         @input="handleInput"

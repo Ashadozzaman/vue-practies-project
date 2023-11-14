@@ -4,37 +4,25 @@
       <h2>{{ msg }}</h2>
     </header>
     <div class="container">
-      <div class="tab">
-        <div class="tab_menu">
-          <div v-for="tab in tabs" :key="tab" class="tab_menu-item" :class="{ 'tab_menu-active': activeTab === tab }"
-            @click="activeTab = tab">{{ tab }}</div>
-        </div>
-      </div>
-      <div class="tab_content">
-        <br>
-        <!-- <Login v-if="activeTab == 'Login'" /> -->
-        <keep-alive>
-          <component :is="activeTab"></component>
-        </keep-alive>
-      </div>
+      <input 
+        type="text" 
+        v-model="name" 
+        placeholder="enter your name"
+        ref="inputName"
+      >
+      <the-comment v-model="comment" placholder="enter comment" ref="commentInput"></the-comment>
     </div>
   </div>
 </template>
 
 <script>
-import Login from "./Login.vue";
-import Register from "./Register.vue";
-import Contact from "./Contact.vue";
+import TheComment from "./TheComment.vue";
 
 export default {
   data() {
     return {
-      msg: "Dynamic Component",
-      tabs: ['Login', 'Register', 'Contact'],
-      activeTab: "Login",
+      msg: "Working with references",
       name: 'Ashadozzman Shvou',
-      website: 'http://shovoua.com',
-      address: 'Dhaka'
     };
   },
   methods: {
@@ -42,17 +30,11 @@ export default {
       //console.log('clicked');
     },
   },
-  provide() {
-    return {
-      name: this.name,
-      website: this.website,
-      address: this.address,
-    }
+  mounted() {
+    console.log(this.$refs.commentInput);
   },
   components: {
-    Login,
-    Register,
-    Contact,
+    TheComment,
   }
 };
 </script>
