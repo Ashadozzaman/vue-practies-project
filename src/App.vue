@@ -4,13 +4,21 @@
       <h2>{{ msg }}</h2>
     </header>
     <div class="container">
-      <input 
-        type="text" 
-        v-model="name" 
-        placeholder="enter your name"
-        ref="inputName"
-      >
-      <the-comment v-model="comment" placholder="enter comment" ref="commentInput"></the-comment>
+      <h1>User Registration</h1>
+      <label>Full Name</label><br>
+      <input type="text" v-model="formData.fullname" placeholder="enter your name" />
+      <br />
+      <label>About You</label><br>
+      <textarea name="aboutYou" v-model="formData.aboutYou" id="" rows="5"></textarea>
+      <br>
+      <label>Gender</label> <br/>
+      <label><input type="radio" name="gender" value="M"  v-model="formData.gender"> Male</label>
+      <label><input type="radio" name="gender" value="F" class="ml-2" v-model="formData.gender"> Fe-Male</label>
+      <label><input type="radio" name="gender" value="O" class="ml-2" v-model="formData.gender"> Others</label>
+      <hr />
+      <div v-for="(value, key) in formData">
+        <strong>{{ key }} : </strong> {{ value }}
+      </div>
     </div>
   </div>
 </template>
@@ -21,8 +29,13 @@ import TheComment from "./TheComment.vue";
 export default {
   data() {
     return {
-      msg: "Working with references",
-      name: 'Ashadozzman Shvou',
+      msg: "Working with Form",
+      name: '',
+      formData: {
+        fullname: "",
+        aboutYou: "",
+        gender : "F",
+      }
     };
   },
   methods: {
@@ -43,6 +56,13 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.container {
+  padding: 5px;
+}
+.ml-2{
+  margin-left: 10px;
 }
 
 ul {
@@ -85,5 +105,13 @@ header {
 input {
   padding: 5px 11px;
   margin-bottom: 11px;
+  border: 2px solid black;
+}
+
+textarea {
+  padding: 5px 11px;
+  margin-bottom: 11px;
+  border: 2px solid black;
+  width: 50%;
 }
 </style>
