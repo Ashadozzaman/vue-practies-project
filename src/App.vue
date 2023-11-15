@@ -15,6 +15,33 @@
       <label><input type="radio" name="gender" value="M"  v-model="formData.gender"> Male</label>
       <label><input type="radio" name="gender" value="F" class="ml-2" v-model="formData.gender"> Fe-Male</label>
       <label><input type="radio" name="gender" value="O" class="ml-2" v-model="formData.gender"> Others</label>
+      <br>
+      <label> Laguage </label><br>
+      <select name="language" id="" v-model="formData.language">
+        <option value="">--Select Option--</option>
+        <option v-for="(value,key) in languageLists" :key="key" :value="value">{{ key }}</option>
+      </select>
+      <br>
+      <label> Skills </label><br>
+      <select name="skills" multiple v-model="formData.skills">
+        <option value="">--Select Option--</option>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="PHP">PHP</option>
+        <option value="JAVA">JAVA</option>
+        <option value="Laravel">Laravel</option>
+      </select>
+      <br>
+      <label for="">Agreement</label>
+      <br/>
+      <label><input type="checkbox" name="agreement" v-model="formData.agreement"> I Agree to the Terms and Services</label>
+      <br>
+      <label for="">Social Account</label>
+      <br/>
+      <label><input type="checkbox" name="agreement" v-model="formData.socials" value="fb"> Facebook</label>
+      <label><input type="checkbox" name="agreement" v-model="formData.socials" value="tw"> Twiter</label>
+      <label><input type="checkbox" name="agreement" v-model="formData.socials" value="go"> Google</label>
+      
       <hr />
       <div v-for="(value, key) in formData">
         <strong>{{ key }} : </strong> {{ value }}
@@ -35,6 +62,15 @@ export default {
         fullname: "",
         aboutYou: "",
         gender : "F",
+        language : "",
+        skills : "",
+        agreement: false,
+        socials: [],
+      },
+      languageLists:{
+        Bangla: 'bn',
+        English: 'en',
+        Spenish: 'es',
       }
     };
   },
